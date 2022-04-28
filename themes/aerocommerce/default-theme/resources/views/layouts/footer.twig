@@ -1,0 +1,21 @@
+<div class="flex bg-white border-t border-grey-light items-center pb-10 flex-wrap">
+    <div class="w-full max-w-3xl mx-auto lg:relative h-full flex flex-wrap lg:px-4">
+        {% for menu in block_items('navigation.footer') %}
+            <div class="w-full lg:flex-1 leading-loose px-4 lg:px-0 mb-4 lg:mb-0 pt-4 accordion">
+                {{ menu | raw }}
+            </div>
+        {% endfor %}
+        <div class="w-full mt-3 lg:mt-5 lg:relative h-full flex flex-wrap">
+            <span class="text-xs text-grey-darker px-4 lg:px-0">Copyright &copy; {{ 'now' | date('Y') }}</span>
+        </div>
+    </div>
+</div>
+{% js %}
+    <script>
+        $(function () {
+            $('.accordion-toggle').click(function () {
+                $(this).parent().toggleClass('accordion--active');
+            });
+        });
+    </script>
+{% endjs %}

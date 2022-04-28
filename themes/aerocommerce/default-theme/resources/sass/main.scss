@@ -1,0 +1,349 @@
+@tailwind preflight;
+
+@tailwind components;
+
+@tailwind utilities;
+
+@import 'glide';
+
+/*! purgecss start ignore */
+*,
+a,
+*:active {
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+body [v-cloak] {
+    &:not(.v-cloaked) {
+        display: none !important;
+    }
+
+    &.v-cloaked {
+        visibility: hidden;
+        opacity: 0;
+    }
+}
+
+input:not([type='radio']):not([type='checkbox']),
+textarea {
+    @apply appearance-none;
+}
+
+.rounded-fix {
+    transform: translate3d(0, 0, 0);
+    backface-visibility: hidden;
+}
+
+.bg-opacity-dark {
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.bg-opacity-darkest {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.transition {
+    transition: all 0.3s cubic-bezier(0.64, 0, 0.35, 1);
+}
+
+.transition-fast {
+    transition: all 0.15s cubic-bezier(0.64, 0, 0.35, 1);
+}
+
+.transition-none {
+    transition: none;
+}
+
+#sidebar {
+    &.show {
+        #sidebar-close {
+            @apply opacity-100 pointer-events-auto;
+        }
+
+        #sidebar-content {
+            @apply pin-l;
+        }
+    }
+
+    &-close {
+        @apply opacity-0 w-full pointer-events-none pin-l;
+        backface-visibility: hidden;
+        will-change: opacity;
+        transition: opacity 0.3s cubic-bezier(0.64, 0, 0.35, 1);
+    }
+
+    &-content {
+        @apply pin-t pin-b;
+        transition: left 0.3s cubic-bezier(0.64, 0, 0.35, 1);
+        backface-visibility: hidden;
+        will-change: left;
+        left: -100%;
+    }
+}
+
+#filters-container {
+    @apply hidden;
+}
+
+@screen lg {
+    #filters-container {
+        @apply block;
+    }
+}
+
+html.sidebar-open,
+html.sidebar-open body {
+    @apply overflow-hidden h-full relative scrolling-auto;
+
+    #filters-container {
+        @apply block;
+    }
+
+    @screen lg {
+        @apply overflow-auto;
+        height: auto;
+
+        #filters-container {
+            @apply block;
+        }
+    }
+}
+
+.cart-count {
+    &:not(:empty) {
+        @apply min-h-5 min-w-5 absolute rounded-full bg-secondary text-primary text-center font-bold text-xs pin-t pin-r -mr-3 -mt-3 no-underline;
+        padding: 0.18rem 0.25rem;
+    }
+
+    &:empty,
+    &:blank,
+    &:-moz-only-whitespace {
+        @apply hidden;
+    }
+}
+
+.group {
+    &:hover {
+        .cart-count {
+            @apply bg-secondary-light;
+        }
+    }
+}
+
+.megamenu {
+    &-group {
+        .megamenu-dropdown {
+            @apply absolute pin-t transition;
+            left: 100%;
+
+            &.active {
+                @apply pin-l;
+            }
+
+            @screen lg {
+                @apply hidden pin-x pin-l border-b border-r border-l border-grey-lighter shadow-lg transition-none;
+                top: 100%;
+
+                &::before {
+                    content: '';
+                    top: -10px;
+                    height: 10px;
+                    z-index: 1;
+                    @apply w-full block absolute bg-white;
+                }
+            }
+        }
+
+        &:hover {
+            .megamenu-dropdown {
+                @apply block;
+            }
+        }
+    }
+}
+
+.glide__arrow {
+    @apply p-4 border-none;
+    box-shadow: none;
+    border-radius: 50%;
+    opacity: 0.5;
+
+    &:hover {
+        opacity: 1;
+    }
+
+    &--left {
+        left: 1rem;
+    }
+
+    &--right {
+        right: 1rem;
+    }
+}
+
+.accordion {
+    .accordion-caret-open {
+        @apply hidden;
+    }
+
+    .accordion-caret-closed {
+        @apply block;
+
+        @screen lg {
+            @apply hidden;
+        }
+    }
+
+    &-content {
+        opacity: 0;
+        overflow: hidden;
+        max-height: 0;
+        transition: max-height 0.25s ease, opacity 0.15s ease;
+
+        @screen lg {
+            opacity: 1;
+            max-height: none;
+        }
+    }
+
+    &--active {
+        .accordion-content {
+            max-height: 99999px;
+            opacity: 1;
+        }
+
+        .accordion-caret-open {
+            @apply block;
+
+            @screen lg {
+                @apply hidden;
+            }
+        }
+
+        .accordion-caret-closed {
+            @apply hidden;
+        }
+    }
+}
+
+.sold-out {
+    @apply relative;
+
+    &::before {
+        @apply block absolute opacity-25 bg-black w-1/2 h-full pin-t pin-l rounded-l;
+        content: '';
+    }
+
+    &::after {
+        @apply block absolute opacity-25 bg-white w-1/2 h-full pin-t pin-r rounded-r;
+        content: '';
+    }
+}
+
+img {
+    &.animate {
+        opacity: 0.25;
+        transition: opacity 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
+    }
+
+    &.lazyloaded {
+        opacity: 1;
+    }
+}
+
+.facet--show-all {
+    .hidden {
+        @apply block;
+    }
+
+    .facet__more {
+        @apply hidden;
+    }
+}
+
+.text-0--no-child {
+    > * {
+        @apply text-base;
+    }
+}
+
+html:not(.no-js) .product__images__loading {
+    @apply absolute pin bg-white z-10;
+}
+
+.express-checkout-separator {
+    @apply flex text-center text-grey-dark justify-between items-center;
+
+    &__content {
+        @apply px-4;
+    }
+
+    &::before,
+    &::after {
+        @apply inline-block h-px flex-grow bg-grey-light;
+        content: '';
+    }
+}
+
+.checkmark__circle {
+    stroke-dasharray: 166;
+    stroke-dashoffset: 166;
+    stroke-width: 2;
+    stroke-miterlimit: 10;
+    stroke: #7ac142;
+    fill: none;
+    animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
+}
+
+.checkmark {
+    @apply block rounded-full mx-auto mb-6;
+    width: 56px;
+    height: 56px;
+    stroke-width: 2;
+    stroke: #fff;
+    stroke-miterlimit: 10;
+    box-shadow: inset 0 0 0 #7ac142;
+    animation: fill 0.4s ease-in-out 0.4s forwards, scale 0.3s ease-in-out 0.9s both;
+}
+
+.checkmark.checkmark--no-animate {
+    box-shadow: inset 0 0 0 30px #7ac142;
+    animation: none;
+}
+
+.checkmark__check {
+    transform-origin: 50% 50%;
+    stroke-dasharray: 48;
+    stroke-dashoffset: 48;
+    animation: stroke 0.3s cubic-bezier(0.65, 0, 0.45, 1) 0.8s forwards;
+}
+
+.checkmark.checkmark--no-animate .checkmark__check {
+    stroke-dashoffset: 0;
+    animation: none;
+}
+
+@keyframes stroke {
+    100% {
+        stroke-dashoffset: 0;
+    }
+}
+
+@keyframes scale {
+    0%,
+    100% {
+        transform: none;
+    }
+    50% {
+        transform: scale3d(1.1, 1.1, 1);
+    }
+}
+
+@keyframes fill {
+    100% {
+        box-shadow: inset 0 0 0 30px #7ac142;
+    }
+}
+@import 'range-slider';
+
+/*! purgecss end ignore */
