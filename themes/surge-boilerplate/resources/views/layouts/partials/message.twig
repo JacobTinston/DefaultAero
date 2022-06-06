@@ -1,0 +1,7 @@
+{% if session('message') %}
+    <div class="mb-4">
+        <span class="block w-full bg-white border-2 {% if session('is_error') %}border-red text-red{% else %}border-green text-green{% endif %} font-bold my-2 p-3 rounded-lg text-center shadow-md" role="alert">
+            <strong>{{ session('message') }}</strong>
+        </span>
+    </div>
+{% endif %}

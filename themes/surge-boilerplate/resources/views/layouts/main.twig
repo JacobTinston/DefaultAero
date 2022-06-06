@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="{{ locale() }}">
+    <head>
+        <title>{{ page_title() }}</title>
+        
+        {% block meta %}{% include "layouts.partials.meta" %}{% endblock %}
+        <link rel="dns-prefetch" href="{{ asset('') }}">
+        <link rel="icon" href="{{ block_item('globals.favicon').small_file }}">
+        <link rel="apple-touch-icon" href="{{ block_item('globals.favicon').small_file }}">
+
+        {# {{ theme_css('css/main.css') }} #}
+    </head>
+
+    <body>
+        {% block main %}
+
+            {% block header %}{% include "layouts.header" %}{% endblock %}
+            {# {% include "layouts.partials.breadcrumb" with {breadcrumb: breadcrumb()} %} #}
+
+            {% content %}
+            
+            {% block footer %}{% include "layouts.footer" %}{% endblock %}
+
+        {% endblock %}
+        
+        {# <script src="{{ theme_asset('js/jquery.slim.min.js') }}"></script> #}
+        <script src="{{ asset(theme_mix('js/main.js')) }}" defer></script>
+        <script src="{{ theme_asset('js/lazysizes.min.js') }}" defer async=""></script>
+    </body>
+</html>

@@ -1,0 +1,89 @@
+// @tailwind preflight;
+// @tailwind components;
+// @tailwind utilities;
+
+@use 'sass:math';
+
+@import './fonts';
+
+@mixin flex($align-items: none, $justify-content: none, $flex-direction: none, $flex-wrap: none) {
+    display: flex;
+    align-items: $align-items;
+    justify-content: $justify-content;
+    flex-wrap: $flex-wrap;
+    flex-direction: $flex-direction;
+}
+
+@mixin sans($font-weight: 400, $font-size: 1rem, $color: $black) {
+    font: {
+        family: sans-serif, serif;
+        weight: $font-weight;
+        size: $font-size;
+    }
+    color: $color;
+}
+
+$small: "only screen and (min-width: 576px)";
+$medium: "only screen and (min-width: 768px)";
+$large: "only screen and (min-width: 992px)";
+$x-large: "only screen and (min-width: 1200px)";
+$xx-large: "only screen and (min-width: 1550px)";
+
+$mobNavHeight: 75px;
+$tabletNavHeight: 90px;
+$desktopNavHeight: 100px;
+
+$black:#000;
+$white:#fff;
+
+* {
+    // border: 1px solid red; // for testing
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+    ::selection {
+        color: default;
+        background-color: default;
+    }
+
+    body {
+        @include flex(0, space-between, column);
+        min-height: 100vh;
+
+        &.no-scroll {
+            overflow-y: hidden;
+        }
+
+        /* ACCORDION */
+
+        .accordion {
+            .panel {
+                display: none;
+            }
+
+            &.active {
+                .panel {
+                    display: block
+                }
+            }
+        }
+
+        /* BUTTONS */
+
+        button, .button a {
+            cursor: pointer;
+        }
+    }
+
+    picture {
+        font-size: 0;
+        line-height: 0;
+        height: fit-content;
+        width: fit-content;
+
+        img {
+            display: block;
+        }
+    }
+}
