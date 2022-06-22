@@ -1,43 +1,15 @@
+/* Start of Globals */
+
 // @tailwind preflight;
 // @tailwind components;
 // @tailwind utilities;
 
-@use 'sass:math';
-
 @import './fonts';
-
-@mixin flex($align-items: none, $justify-content: none, $flex-direction: none, $flex-wrap: none) {
-    display: flex;
-    align-items: $align-items;
-    justify-content: $justify-content;
-    flex-wrap: $flex-wrap;
-    flex-direction: $flex-direction;
-}
-
-@mixin sans($font-weight: 400, $font-size: 1rem, $color: $black) {
-    font: {
-        family: sans-serif, serif;
-        weight: $font-weight;
-        size: $font-size;
-    }
-    color: $color;
-}
-
-$small: "only screen and (min-width: 576px)";
-$medium: "only screen and (min-width: 768px)";
-$large: "only screen and (min-width: 992px)";
-$x-large: "only screen and (min-width: 1200px)";
-$xx-large: "only screen and (min-width: 1550px)";
-
-$mobNavHeight: 75px;
-$tabletNavHeight: 90px;
-$desktopNavHeight: 100px;
-
-$black:#000;
-$white:#fff;
+@import './variables';
 
 * {
     // border: 1px solid red; // for testing
+    @include sans();
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -50,12 +22,19 @@ $white:#fff;
     body {
         @include flex(0, space-between, column);
         min-height: 100vh;
+        background: $white;
 
         &.no-scroll {
             overflow-y: hidden;
         }
 
-        /* ACCORDION */
+        .content {
+            a:not(.button) {
+                &:hover {
+                    text-decoration: underline;
+                }
+            }
+        }
 
         .accordion {
             .panel {
@@ -69,11 +48,22 @@ $white:#fff;
             }
         }
 
-        /* BUTTONS */
-
-        button, .button a {
-            cursor: pointer;
+        button, a.button {
+            display: block;
         }
+    }
+
+    a {
+        display: inline-block;
+        height: fit-content;
+        width: fit-content;
+        text-decoration: none;
+    }
+
+    hr {
+        border: none;
+        height: 1px;
+        background: $black;
     }
 
     picture {
@@ -82,8 +72,17 @@ $white:#fff;
         height: fit-content;
         width: fit-content;
 
+        ::selection {
+            background: none;
+        }
+
         img {
             display: block;
         }
     }
 }
+
+@import './animations';
+@import './partials/footer';
+
+/* End of Globals */

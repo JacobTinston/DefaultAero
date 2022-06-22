@@ -8,7 +8,7 @@ mix.setPublicPath('public')
     .js('resources/js/main.js', 'public/js')
     .js('resources/js/glide.js', 'public/js')
     .sass('resources/sass/partials/header.scss', 'public/css')
-    .sass('resources/sass/main.scss', 'public/css')
+    .sass('resources/sass/homepage.scss', 'public/css')
     .polyfill({
         enabled: true,
         useBuiltIns: 'usage',

@@ -1,0 +1,28 @@
+@mixin flex($align-items: none, $justify-content: none, $flex-direction: none, $flex-wrap: none) {
+    display: flex;
+    align-items: $align-items;
+    justify-content: $justify-content;
+    flex-wrap: $flex-wrap;
+    flex-direction: $flex-direction;
+}
+
+@mixin sans($font-weight: 400, $font-size: 1rem, $color: $black) {
+    font: {
+        family: sans-serif;
+        weight: $font-weight;
+        size: $font-size;
+    }
+    color: $color;
+}
+
+$small: "only screen and (min-width: 576px)";
+$medium: "only screen and (min-width: 768px)";
+$large: "only screen and (min-width: 992px)";
+$x-large: "only screen and (min-width: 1200px)";
+$xx-large: "only screen and (min-width: 1550px)";
+
+$mobNavHeight: 75px;
+$desktopNavHeight: 95px;
+
+$black:#000;
+$white:#FFF;
